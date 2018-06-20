@@ -1,10 +1,24 @@
 import React,{Component} from 'react';
-
+import axios from 'axios';
 class Search extends Component{
 
     getKey(e){
         e.preventDefault();
-        console.log("Tharaka React")
+        const me= this.refs.input.value;
+        const update = this.props;
+        axios.post('http://localhost:3001/getlocations', {
+            city:me,
+        })
+            .then(function (response) {
+              update.callUpdate()
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+        console.log(me)
+
     }
     render(){
         return(
